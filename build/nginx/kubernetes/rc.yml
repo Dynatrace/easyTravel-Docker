@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-rc
+spec:
+  replicas: 1
+  selector:
+    app: reverse-proxy
+  template: 
+    metadata:
+      labels:
+        app: reverse-proxy
+        tier: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: dynatrace/easytravel-nginx
+        ports:
+        - containerPort: 80
+        - containerPort: 443

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: loadgen
+  labels:
+    app: loadgen
+spec:
+  containers:
+  - name: loadgen
+    image: dynatrace/easytravel-loadgen

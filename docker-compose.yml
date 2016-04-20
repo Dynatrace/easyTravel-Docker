@@ -1,0 +1,23 @@
+mongodb:
+  container_name: mongodb
+  image: "dynatrace/easytravel-mongodb"
+  ports:
+  - 27017
+  - 28017
+
+backend:
+  container_name: backend
+  image: "dynatrace/easytravel-backend"
+  ports:
+  - 8080
+  links:
+  - mongodb
+
+frontend:
+  container_name: frontend
+  image: "dynatrace/easytravel-frontend"
+  ports:
+  - 8080
+  links:
+  - backend
+  - mongodb

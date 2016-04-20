@@ -1,0 +1,3 @@
+[submodule "app/easyTravel"]
+	path = app/easyTravel
+	url = https://github.com/dynatrace-innovationlab/easyTravel-Builder.git

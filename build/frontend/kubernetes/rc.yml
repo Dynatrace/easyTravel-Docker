@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: frontend-rc
+spec:
+  replicas: 2
+  selector:
+    app: frontend
+  template: 
+    metadata:
+      labels:
+        app: frontend
+        tier: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: dynatrace/easytravel-frontend
+        ports:
+        - containerPort: 8080
+        - containerPort: 8280

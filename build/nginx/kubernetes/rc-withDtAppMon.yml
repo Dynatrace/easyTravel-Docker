@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-rc
+spec:
+  replicas: 1
+  selector:
+    app: reverse-proxy
+  template: 
+    metadata:
+      labels:
+        app: reverse-proxy
+        tier: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: dynatrace/easytravel-nginx
+        env:
+        - name: DT_AGENT_NAME
+          value: www_easyTravelKube
+        - name: LD_PRELOAD
+          value: /srv/dynatrace/agent/lib64/libdtagent.so
+        ports:
+        - containerPort: 80
+        - containerPort: 443
+        volumeMounts:
+        - name: dynatrace-volume
+          mountPath: /srv/dynatrace
+        command: ["/bin/sh", "-c"]
+        args: ["/srv/dynatrace/run-wsagent.sh && nginx -g 'daemon off;'"]
+      - name: dtagent
+        image: dynatrace/dtagent
+        env:
+        - name: DT_AGENT_COLLECTOR
+          value: "localhost:9998"
+        volumeMounts:
+        - name: dynatrace-volume
+          mountPath: /srv/dynatrace
+        lifecycle:
+          postStart:
+            exec:
+              command: ["cp", "-R", "/dynatrace", "/srv"]
+      - name: dtcollector
+        image: dynatrace/collector
+        env:
+        - name: DT_COLLECTOR_SERVER
+          value: "acmeco.dynatracesaas.com:6698"
+        ports:
+        - containerPort: 9998
+      volumes:
+      - name: dynatrace-volume
+        emptyDir: {}

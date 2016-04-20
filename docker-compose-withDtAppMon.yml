@@ -1,0 +1,57 @@
+mongodb:
+  container_name: mongodb
+  image: "dynatrace/easytravel-mongodb"
+  ports:
+  - 27017
+  - 28017
+
+backend:
+  container_name: backend
+  image: "dynatrace/easytravel-backend"
+  ports:
+  - 8080
+  links:
+  - mongodb
+  volumes_from:
+  - dtagent
+  external_links:
+  - dtcollector
+  environment:
+    CATALINA_OPTS: "-agentpath:/dynatrace/agent/lib64/libdtagent.so=name=backend_easyTravel,collector=docker-dtcollector"
+
+frontend:
+  container_name: frontend
+  image: "dynatrace/easytravel-frontend"
+  ports:
+  - 8080
+  links:
+  - backend
+  - mongodb
+  volumes_from:
+  - dtagent
+  external_links:
+  - dtcollector
+  environment:
+    CATALINA_OPTS: "-agentpath:/dynatrace/agent/lib64/libdtagent.so=name=frontend_easyTravel,collector=docker-dtcollector"
+
+www:
+  container_name: www
+  image: "dynatrace/easytravel-nginx"
+  ports:
+  - 80
+  links:
+  - frontend
+  volumes_from:
+  - dtagent
+  external_links:
+  - dtcollector
+  environment:
+    DT_AGENT_NAME: "www-agent"
+    LD_PRELOAD: "/dynatrace/agent/lib64/libdtagent.so"
+  command: sh -c "/dynatrace/run-wsagent.sh && nginx -g 'daemon off;'"
+
+loadgen:
+  container_name: loadgen
+  image: "dynatrace/easytravel-loadgen"
+  links:
+  - www

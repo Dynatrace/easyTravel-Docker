@@ -1,5 +1,5 @@
 #!/bin/bash
-export ET_SRC_URL="https://s3.amazonaws.com/easytravel/dT63/easyTravel-2.0.0.2236-src.zip"
+export ET_SRC_URL="https://s3.amazonaws.com/easytravel/dT63/easyTravel-2.0.0.2244-src.zip"
 
 export ET_DEPLOY_HOME="./build"
 export ET_CF_DEPLOY_HOME="frontend/build"

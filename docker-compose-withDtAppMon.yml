@@ -18,6 +18,7 @@ backend:
   - dtcollector
   environment:
     CATALINA_OPTS: "-agentpath:/dynatrace/agent/lib64/libdtagent.so=name=backend_easyTravel,collector=docker-dtcollector"
+    ET_DATABASE_LOCATION: "mongodb:27017"
 
 frontend:
   container_name: frontend
@@ -33,6 +34,7 @@ frontend:
   - dtcollector
   environment:
     CATALINA_OPTS: "-agentpath:/dynatrace/agent/lib64/libdtagent.so=name=frontend_easyTravel,collector=docker-dtcollector"
+    ET_BACKEND_URL: "http://backend:8080"
 
 www:
   container_name: www

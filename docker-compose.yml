@@ -12,6 +12,8 @@ backend:
   - 8080
   links:
   - mongodb
+  environment:
+    ET_DATABASE_LOCATION: "mongodb:27017"
 
 frontend:
   container_name: frontend
@@ -21,3 +23,5 @@ frontend:
   links:
   - backend
   - mongodb
+  environment:
+    ET_BACKEND_URL: "http://backend:8080"

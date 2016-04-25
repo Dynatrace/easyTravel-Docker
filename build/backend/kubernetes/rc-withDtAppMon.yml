@@ -18,6 +18,8 @@ spec:
         env:
         - name: CATALINA_OPTS
           value: "-agentpath:/srv/dynatrace/agent/lib64/libdtagent.so=name=backend_easyTravelKube,collector=localhost:9998"
+        - name: ET_DATABASE_LOCATION
+          value: "mongodb:27017"
         ports:
         - containerPort: 8091
         - containerPort: 8280

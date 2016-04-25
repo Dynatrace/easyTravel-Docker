@@ -18,6 +18,8 @@ spec:
         env:
         - name: CATALINA_OPTS
           value: "-agentpath:/srv/dynatrace/agent/lib64/libdtagent.so=name=frontend_easyTravelKube,collector=localhost:9998"
+        - name: ET_BACKEND_URL
+          value: "http://backend:8080"
         ports:
         - containerPort: 8080
         - containerPort: 8280

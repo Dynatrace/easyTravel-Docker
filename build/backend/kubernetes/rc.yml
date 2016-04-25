@@ -15,6 +15,9 @@ spec:
       containers:
       - name: backend
         image: dynatrace/easytravel-backend
+        env:
+        - name: ET_DATABASE_LOCATION
+          value: "mongodb:27017"
         ports:
         - containerPort: 8091
         - containerPort: 8280

@@ -1,4 +1,5 @@
 mongodb:
+  hostname: easytravel-mongodb
   container_name: mongodb
   image: "dynatrace/easytravel-mongodb"
   ports:
@@ -6,6 +7,7 @@ mongodb:
   - 28017
 
 backend:
+  hostname: easytravel-backend
   container_name: backend
   image: "dynatrace/easytravel-backend"
   ports:
@@ -21,6 +23,7 @@ backend:
     ET_DATABASE_LOCATION: "mongodb:27017"
 
 frontend:
+  hostname: easytravel-frontend
   container_name: frontend
   image: "dynatrace/easytravel-frontend"
   ports:
@@ -37,6 +40,7 @@ frontend:
     ET_BACKEND_URL: "http://backend:8080"
 
 www:
+  hostname: easytravel-www
   container_name: www
   image: "dynatrace/easytravel-nginx"
   ports:

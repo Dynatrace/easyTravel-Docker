@@ -28,3 +28,18 @@ frontend:
   - mongodb
   environment:
     ET_BACKEND_URL: "http://backend:8080"
+
+www:
+  hostname: easytravel-www
+  container_name: www
+  image: "dynatrace/easytravel-nginx"
+  ports:
+  - 80
+  links:
+  - frontend
+
+loadgen:
+  container_name: loadgen
+  image: "dynatrace/easytravel-loadgen"
+  links:
+  - www

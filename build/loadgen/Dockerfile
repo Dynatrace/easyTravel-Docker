@@ -9,4 +9,4 @@ ADD build/loadgen.tar.gz ${ET_HOME}
 
 WORKDIR ${ET_HOME}
 
-CMD java -jar uemload.jar --autorun true --server http://www
+CMD java -jar uemload.jar --autorun true --server http://easytravel-www

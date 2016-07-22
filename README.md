@@ -6,7 +6,7 @@ This project builds and deploys the [Dynatrace easyTravel](https://community.dyn
 
 ## Application Components
 
-| Component | Component
+| Component | Description
 |:----------|:---------
 | mongodb   | A pre-populated travel database (MongoDB).
 | backend   | The easyTravel Business Backend (Java).
@@ -21,6 +21,17 @@ You can run easyTravel by using [Docker Compose](https://docs.docker.com/compose
 ```
 docker-compose up
 ```
+
+## Configure easyTravel in Docker
+
+Aligning with principles of [12factor apps](http://12factor.net/config), one of them which requires strict separation of configuration from code, easyTravel can be configured at startup time via the following environment variables:
+
+| Environment Variable  | Defaults                       | Component | Description
+|:----------------------|:-------------------------------|:----------|:-----------
+| ET_DATABASE_LOCATION  | easytravel-mongodb:27017       | backend   | The location of the database the easyTravel Business Backend shall connect to.
+| ET_BACKEND_URL        | http://easytravel-backend:8080 | frontend  | The URL to easyTravel's Business Backend.
+| ET_FRONTEND_LOCATION  | easytravel-frontend:8080       | nginx     | The location of the Customer Frontend the easyTravel WWW server shall connect to.
+| ET_WWW_URL            | http://easytravel-www:80       | loadgen   | The URL to easytravel's WWW server.
 
 ## Monitor easyTravel with Dynatrace AppMon
 

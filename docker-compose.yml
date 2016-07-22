@@ -15,7 +15,7 @@ backend:
   links:
   - mongodb
   environment:
-    ET_DATABASE_LOCATION: "mongodb:27017"
+    ET_DATABASE_LOCATION: "easytravel-mongodb:27017"
 
 frontend:
   hostname: easytravel-frontend
@@ -27,7 +27,7 @@ frontend:
   - backend
   - mongodb
   environment:
-    ET_BACKEND_URL: "http://backend:8080"
+    ET_BACKEND_URL: "http://easytravel-backend:8080"
 
 www:
   hostname: easytravel-www
@@ -37,9 +37,13 @@ www:
   - 80
   links:
   - frontend
+  environment:
+    ET_FRONTEND_LOCATION: "easytravel-frontend:8080"
 
 loadgen:
   container_name: loadgen
   image: "dynatrace/easytravel-loadgen"
   links:
   - www
+  environment:
+    ET_WWW_URL: "http://easytravel-www:80"

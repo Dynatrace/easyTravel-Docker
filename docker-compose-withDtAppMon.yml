@@ -20,7 +20,7 @@ backend:
   - dtcollector
   environment:
     CATALINA_OPTS: "-agentpath:/dynatrace/agent/lib64/libdtagent.so=name=backend_easyTravel,collector=docker-dtcollector"
-    ET_DATABASE_LOCATION: "mongodb:27017"
+    ET_DATABASE_LOCATION: "easytravel-mongodb:27017"
 
 frontend:
   hostname: easytravel-frontend
@@ -37,7 +37,7 @@ frontend:
   - dtcollector
   environment:
     CATALINA_OPTS: "-agentpath:/dynatrace/agent/lib64/libdtagent.so=name=frontend_easyTravel,collector=docker-dtcollector"
-    ET_BACKEND_URL: "http://backend:8080"
+    ET_BACKEND_URL: "http://easytravel-backend:8080"
 
 www:
   hostname: easytravel-www
@@ -52,6 +52,7 @@ www:
   external_links:
   - dtcollector
   environment:
+    ET_FRONTEND_LOCATION: "easytravel-frontend:8080"
     DT_AGENT_NAME: "www-agent"
     LD_PRELOAD: "/dynatrace/agent/lib64/libdtagent.so"
   command: sh -c "/dynatrace/run-wsagent.sh && nginx -g 'daemon off;'"
@@ -61,3 +62,5 @@ loadgen:
   image: "dynatrace/easytravel-loadgen"
   links:
   - www
+  environment:
+    ET_WWW_URL: "http://easytravel-www"

@@ -53,14 +53,18 @@ www:
   - dtcollector
   environment:
     ET_FRONTEND_LOCATION: "easytravel-frontend:8080"
-    DT_AGENT_NAME: "www-agent"
+    DT_AGENT_NAME: "easytravel-www"
     LD_PRELOAD: "/dynatrace/agent/lib64/libdtagent.so"
-  command: sh -c "/dynatrace/run-wsagent.sh && nginx -g 'daemon off;'"
+  command: sh -c "/dynatrace/run-wsagent.sh && /run-process.sh"
 
 loadgen:
   container_name: loadgen
   image: "dynatrace/easytravel-loadgen"
   links:
+  - backend
+  - frontend
   - www
   environment:
-    ET_WWW_URL: "http://easytravel-www"
+    ET_WWW_URL: "http://easytravel-www:80"
+    ET_BACKEND_URL: "http://easytravel-backend:8080"
+    ET_PROBLEMS: "BadCacheSynchronization,CPULoad,DatabaseCleanup,DatabaseSlowdown,ExceptionSpamming,FetchSizeTooSmall,JourneySearchError404,JourneySearchError500,LargeMemoryLeak,LoginProblems,MediumMemoryLeak,MobileErrors,TravellersOptionBox"

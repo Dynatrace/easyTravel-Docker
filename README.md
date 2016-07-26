@@ -33,7 +33,7 @@ Aligning with principles of [12factor apps](http://12factor.net/config), one of 
 | nginx     | ET_FRONTEND_LOCATION  | easytravel-frontend:8080       | The location of the Customer Frontend the easyTravel WWW server shall connect to.
 | loadgen   | ET_WWW_URL            | http://easytravel-www:80       | The URL to easytravel's WWW server.
 | loadgen   | ET_BACKEND_URL        |                                | The URL to easyTravel's Business Backend (optional). If provided, the problem patterns provided in `ET_PROBLEMS` will be applied consecutively for a duration of 10 minutes each.
-| loadgen   | ET_PROBLEMS           | BadCacheSynchronization,CPULoad,DatabaseCleanup,DatabaseSlowdown,ExceptionSpamming,FetchSizeTooSmall,JourneySearchError404,JourneySearchError500,LargeMemoryLeak,LoginProblems,MediumMemoryLeak,MobileErrors,TravellersOptionBox | A list of supported problem patterns, see below on how to activate.
+| loadgen   | ET_PROBLEMS           | BadCacheSynchronization,CPULoad,DatabaseCleanup,DatabaseSlowdown,ExceptionSpamming,FetchSizeTooSmall,JourneySearchError404,JourneySearchError500,LoginProblems,MediumMemoryLeak,MobileErrors,TravellersOptionBox | A list of supported problem patterns, see below on how to activate.
 
 ## Enable easyTravel Problem Patterns
 

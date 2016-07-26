@@ -1,5 +1,5 @@
 #!/bin/bash
-ET_PROBLEMS=${ET_PROBLEMS:-'BadCacheSynchronization,CPULoad,DatabaseCleanup,DatabaseSlowdown,ExceptionSpamming,FetchSizeTooSmall,JourneySearchError404,JourneySearchError500,LargeMemoryLeak,LoginProblems,MediumMemoryLeak,MobileErrors,TravellersOptionBox'}
+ET_PROBLEMS=${ET_PROBLEMS:-'BadCacheSynchronization,CPULoad,DatabaseCleanup,DatabaseSlowdown,ExceptionSpamming,FetchSizeTooSmall,JourneySearchError404,JourneySearchError500,LoginProblems,MediumMemoryLeak,MobileErrors,TravellersOptionBox'}
 ET_PROBLEM_CHANGE_INTERVAL_S=${1:-$((10 * 60))}
 ET_PROBLEM_UPDATE_INTERVAL_S=${2:-5}
 

@@ -14,4 +14,4 @@ This offering is [Dynatrace Community Supported](https://community.dynatrace.com
 
 ## License
 
-Licensed under the MIT License. See the [LICENSE file](https://github.com/dynaTrace/Dynatrace-Docker/blob/master/LICENSE) for details.
+Licensed under the MIT License. See the [LICENSE file](https://github.com/dynatrace-innovationlab/easyTravel-Docker/blob/master/LICENSE) for details.

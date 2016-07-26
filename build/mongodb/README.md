@@ -4,10 +4,9 @@ The `dynatrace/easytravel-mongodb` Docker image contains the *Travel Database* c
 
 ## Supported Tags
 
-- `6.2` [(Dockerfile)](https://github.com/dynaTrace/Dynatrace-easyTravel-Docker/blob/6.2/mongodb/Dockerfile)
-- `6.3`, `latest` [(Dockerfile)](https://github.com/dynaTrace/Dynatrace-easyTravel-Docker/blob/master/mongodb/Dockerfile)
+- `6.3`, `latest` [(Dockerfile)](https://github.com/dynatrace-innovationlab/easyTravel-Docker/blob/master/mongodb/Dockerfile)
 
-Please see the [Dynatrace/Dynatrace-easyTravel-Docker](https://github.com/dynaTrace/Dynatrace-easyTravel-Docker) GitHub repository for further information on how to run, configure and build this image.
+Please see the [Dynatrace-Innovationlab/easyTravel-Docker](https://github.com/dynatrace-innovationlab/easyTravel-Docker) GitHub repository for further information on how to run, configure and build this image.
 
 ## Problems? Questions? Suggestions?
 

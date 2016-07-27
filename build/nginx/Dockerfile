@@ -13,4 +13,7 @@ RUN  apt-get update && \
 COPY build/scripts/wait-for-cmd.sh /usr/local/bin
 COPY build/scripts/run-process.sh /
 
+EXPOSE 80
+EXPOSE 8080
+
 CMD /run-process.sh

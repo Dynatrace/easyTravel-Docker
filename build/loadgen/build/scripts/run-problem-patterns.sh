@@ -20,8 +20,8 @@ enableProblem() {
 
   if [ -n "${PROBLEM}" ]; then
     echo "Enabling easyTravel problem: ${PROBLEM}"
-    wget -q "${ET_BACKEND_CONFIG_SERVICE}/registerPlugins?pluginData=${PROBLEM}"
-    wget -q "${ET_BACKEND_CONFIG_SERVICE}/setPluginEnabled?name=${PROBLEM}&enabled=true"
+    wget -qO- "${ET_BACKEND_CONFIG_SERVICE}/registerPlugins?pluginData=${PROBLEM}"
+    wget -qO- "${ET_BACKEND_CONFIG_SERVICE}/setPluginEnabled?name=${PROBLEM}&enabled=true"
   fi
 }
 
@@ -30,7 +30,7 @@ disableProblem() {
 
   if [ -n "${PROBLEM}" ]; then
     echo "Disabling easyTravel problem: ${PROBLEM}"
-    wget -q "${ET_BACKEND_CONFIG_SERVICE}/setPluginEnabled?name=${PROBLEM}&enabled=false"
+    wget -qO- "${ET_BACKEND_CONFIG_SERVICE}/setPluginEnabled?name=${PROBLEM}&enabled=false"
   fi
 }
 

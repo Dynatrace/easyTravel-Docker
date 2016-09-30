@@ -19,7 +19,7 @@ backend:
   external_links:
   - dtserver
   environment:
-    CATALINA_OPTS: "-agentpath:/dynatrace/agent/lib64/libdtagent.so=name=backend_easyTravel,collector=docker-dtserver"
+    CATALINA_OPTS: "-agentpath:/dynatrace/agent/lib64/libdtagent.so=name=BusinessBackend_easyTravel,collector=docker-dtserver"
     ET_DATABASE_LOCATION: "easytravel-mongodb:27017"
 
 frontend:
@@ -36,7 +36,7 @@ frontend:
   external_links:
   - dtserver
   environment:
-    CATALINA_OPTS: "-agentpath:/dynatrace/agent/lib64/libdtagent.so=name=frontend_easyTravel,collector=docker-dtserver"
+    CATALINA_OPTS: "-agentpath:/dynatrace/agent/lib64/libdtagent.so=name=CustomerFrontend_easyTravel,collector=docker-dtserver"
     ET_BACKEND_URL: "http://easytravel-backend:8080"
 
 www:
@@ -55,7 +55,7 @@ www:
   environment:
     ET_FRONTEND_LOCATION: "easytravel-frontend:8080"
     ET_BACKEND_LOCATION: "easytravel-backend:8080"
-    DT_AGENT_NAME: "easytravel-www"
+    DT_AGENT_NAME: "WebServer_easyTravel"
     DT_AGENT_COLLECTOR: "dtserver"
     LD_PRELOAD: "/dynatrace/agent/lib64/libdtagent.so"
   command: sh -c "/dynatrace/run-wsagent.sh && /run-process.sh"

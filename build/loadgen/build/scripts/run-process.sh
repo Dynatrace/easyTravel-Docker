@@ -10,4 +10,4 @@ fi
 
 echo "Waiting for the easyTravel Customer Frontend on ${ET_FRONTEND_URL}"
 wait-for-cmd.sh "nc -z `echo ${ET_FRONTEND_URL} | sed 's/http:\/\///' | sed 's/:/ /'`" 360
-java -jar uemload.jar --autorun true --server ${ET_FRONTEND_URL}
+java -jar uemload.jar --autorun true --random 20 --server ${ET_FRONTEND_URL}

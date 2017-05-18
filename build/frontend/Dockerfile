@@ -2,6 +2,8 @@ FROM jeanblanchard/tomcat:8
 
 MAINTAINER Martin Etmajer <martin.etmajer@dynatrace.com>, Rafal Psciuk <rafal.psciuk@dynatrace.com>
 
+RUN apk add --no-cache curl openssl
+
 # Deploy easyTravel Customer Frontend Application
 COPY build/frontend.war ${CATALINA_HOME}/webapps/
 

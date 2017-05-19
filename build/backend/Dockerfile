@@ -2,8 +2,6 @@ FROM jeanblanchard/tomcat:8
 
 MAINTAINER Martin Etmajer <martin.etmajer@dynatrace.com>, Rafal Psciuk <rafal.psciuk@dynatrace.com>
 
-RUN apk add --no-cache curl openssl
-
 # Deploy easyTravel Business Backend Application
 COPY build/backend.war ${CATALINA_HOME}/webapps/
 
@@ -13,7 +11,7 @@ RUN mv ${CATALINA_HOME}/webapps/ROOT ${CATALINA_HOME}/webapps/tomcat
 # Make easyTravel Business Backend application base '/' context
 RUN mv ${CATALINA_HOME}/webapps/backend.war ${CATALINA_HOME}/webapps/ROOT.war
 
-ENV ET_RUNTIME_DEPS "bash netcat-openbsd"
+ENV ET_RUNTIME_DEPS "bash curl netcat-openbsd openssl"
 RUN apk add --no-cache ${ET_RUNTIME_DEPS}
 
 COPY build/scripts/wait-for-cmd.sh /usr/local/bin

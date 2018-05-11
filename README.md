@@ -34,7 +34,7 @@ Aligning with principles of [12factor apps](http://12factor.net/config), one of 
 | nginx     | ET_BACKEND_LOCATION   | easytravel-backend:8080        | The location of the Business Backend the easyTravel WWW server shall serve via port 8080.
 | loadgen   | ET_WWW_URL            | http://easytravel-www:80       | The URL to easytravel's Customer Frontend.
 | loadgen   | ET_BACKEND_URL        | http://easytravel-www:8080     | The URL to easyTravel's Business Backend (optional). If provided, the problem patterns provided in `ET_PROBLEMS` will be applied consecutively for a duration of 10 minutes each.
-| loadgen   | ET_PROBLEMS           | BadCacheSynchronization,CPULoad,DatabaseCleanup,DatabaseSlowdown,<br/>FetchSizeTooSmall,JourneySearchError404,JourneySearchError500,<br/>LoginProblems,MobileErrors,TravellersOptionBox | A list of supported problem patterns, see below on how to activate.
+| loadgen   | ET_PROBLEMS           | BadCacheSynchronization,<br/>CPULoad,<br/>DatabaseCleanup,<br/>DatabaseSlowdown,<br/>FetchSizeTooSmall,<br/>JourneySearchError404,<br/>JourneySearchError500,<br/>LoginProblems,<br/>MobileErrors,<br/>TravellersOptionBox | A list of supported problem patterns, see below on how to activate.
 | loadgen   | ET_PROBLEMS_DELAY     | 0                              | A delay in seconds. When used with Dynatrace, it is suggested to use a value of 7500 (slightly more than 2 hours) so that Dynatrace can learn from an error-free behavior first.
 | loadgen<br/>backend<br/>frontend | ET_APM_SERVER_DEFAULT | Classic | The type of used server. Can be "APM" for Dynatrace and "Classic" fro AppMon
 

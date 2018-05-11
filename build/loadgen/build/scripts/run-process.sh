@@ -1,6 +1,7 @@
 #!/bin/bash
 ET_FRONTEND_URL=${ET_FRONTEND_URL:-'http://localhost:8080'}
 ET_PROBLEMS_DELAY=${ET_PROBLEMS_DELAY:-0}
+EXTRA_OPTS="--installationMode ${ET_APM_SERVER_DEFAULT:-Classic}"
 
 if [ -n "${ET_BACKEND_URL}" ]; then
   echo "Waiting for the easyTravel Business Backend on ${ET_BACKEND_URL}"
@@ -10,4 +11,4 @@ fi
 
 echo "Waiting for the easyTravel Customer Frontend on ${ET_FRONTEND_URL}"
 wait-for-cmd.sh "nc -z `echo ${ET_FRONTEND_URL} | sed 's/http:\/\///' | sed 's/:/ /'`" 360
-java -jar uemload.jar --autorun true --random 20 --server ${ET_FRONTEND_URL}
+java -jar uemload.jar --autorun true --const 5 --server ${ET_FRONTEND_URL} ${EXTRA_OPTS}

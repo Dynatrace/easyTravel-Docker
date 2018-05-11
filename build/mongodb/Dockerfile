@@ -1,11 +1,10 @@
-FROM alpine:edge
+FROM alpine:3.7
 
-MAINTAINER Martin Etmajer <martin.etmajer@dynatrace.com>, Rafal Psciuk <rafal.psciuk@dynatrace.com>
+LABEL maintainer="Rafal Psciuk <rafal.psciuk@dynatrace.com>, Tomasz Wieremjewicz <tomasz.wieremjewicz@dynatrace.com>"
 
 ENV MONGODB_DB /data/db/easyTravel
 
-RUN echo http://dl-4.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories && \
-    apk add --no-cache mongodb
+RUN apk add --no-cache mongodb
 
 EXPOSE 27017 28017
 

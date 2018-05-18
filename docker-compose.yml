@@ -15,6 +15,7 @@ backend:
   links:
   - mongodb
   environment:
+    CATALINA_OPTS: "-Dconfig.apmServerDefault=${ET_APM_SERVER_DEFAULT} -Xmx300m"
     ET_DATABASE_LOCATION: "easytravel-mongodb:27017"
 
 frontend:
@@ -27,6 +28,7 @@ frontend:
   - backend
   - mongodb
   environment:
+    CATALINA_OPTS: "-Dconfig.apmServerDefault=${ET_APM_SERVER_DEFAULT} -Xmx525m"
     ET_BACKEND_URL: "http://easytravel-backend:8080"
 
 www:
@@ -50,6 +52,7 @@ loadgen:
   - frontend
   - www
   environment:
+    ET_APM_SERVER_DEFAULT: "${ET_APM_SERVER_DEFAULT}"
     ET_FRONTEND_URL: "http://easytravel-www:80"
     ET_BACKEND_URL: "http://easytravel-www:8080"
-    ET_PROBLEMS: "BadCacheSynchronization,CPULoad,DatabaseCleanup,DatabaseSlowdown,ExceptionSpamming,FetchSizeTooSmall,JourneySearchError404,JourneySearchError500,LoginProblems,MediumMemoryLeak,MobileErrors,TravellersOptionBox"
+    ET_PROBLEMS: "BadCacheSynchronization,CPULoad,DatabaseCleanup,DatabaseSlowdown,FetchSizeTooSmall,JourneySearchError404,JourneySearchError500,LoginProblems,MobileErrors,TravellersOptionBox"

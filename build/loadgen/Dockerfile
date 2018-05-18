@@ -1,6 +1,6 @@
-FROM debian:wheezy
+FROM debian:stretch
 
-MAINTAINER Martin Etmajer <martin.etmajer@dynatrace.com>, Rafal Psciuk <rafal.psciuk@dynatrace.com>
+LABEL maintainer="Rafal Psciuk <rafal.psciuk@dynatrace.com>, Tomasz Wieremjewicz <tomasz.wieremjewicz@dynatrace.com>"
 
 ENV ET_RUNTIME_DEPS "default-jre netcat wget"
 RUN  apt-get update && \

@@ -1,6 +1,6 @@
 FROM alpine:3.7
 
-LABEL maintainer="Rafal Psciuk <rafal.psciuk@dynatrace.com>, Tomasz Wieremjewicz <tomasz.wieremjewicz@dynatrace.com>"
+MAINTAINER Rafal Psciuk <rafal.psciuk@dynatrace.com>, Tomasz Wieremjewicz <tomasz.wieremjewicz@dynatrace.com>
 
 ENV MONGODB_DB /data/db/easyTravel
 

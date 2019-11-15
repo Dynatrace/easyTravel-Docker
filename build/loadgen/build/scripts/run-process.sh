@@ -1,7 +1,7 @@
 #!/bin/bash
 ET_FRONTEND_URL=${ET_FRONTEND_URL:-'http://localhost:8080'}
 ET_PROBLEMS_DELAY=${ET_PROBLEMS_DELAY:-0}
-EXTRA_OPTS="--installationMode ${ET_APM_SERVER_DEFAULT:-Classic}"
+EXTRA_OPTS="--installationMode ${ET_APM_SERVER_DEFAULT:-APM}"
 
 if [ -n "${ET_BACKEND_URL}" ]; then
   echo "Waiting for the easyTravel Business Backend on ${ET_BACKEND_URL}"

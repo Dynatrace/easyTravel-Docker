@@ -17,6 +17,9 @@ backend:
   environment:
     CATALINA_OPTS: "-Dconfig.apmServerDefault=${ET_APM_SERVER_DEFAULT} -Xmx300m"
     ET_DATABASE_LOCATION: "easytravel-mongodb:27017"
+    ET_MONGO_AUTH_DB: "admin"
+    ET_DATABASE_USER: "etAdmin"
+    ET_DATABASE_PASSWORD: "adminadmin"
 
 frontend:
   hostname: easytravel-frontend

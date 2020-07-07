@@ -21,6 +21,9 @@ backend:
   environment:
     CATALINA_OPTS: "-agentpath:/dynatrace/agent/lib64/libdtagent.so=name=BusinessBackend_easyTravel,collector=docker-dtserver"
     ET_DATABASE_LOCATION: "easytravel-mongodb:27017"
+    ET_MONGO_AUTH_DB: "admin"
+    ET_DATABASE_USER: "etAdmin"
+    ET_DATABASE_PASSWORD: "adminadmin"
 
 frontend:
   hostname: easytravel-frontend

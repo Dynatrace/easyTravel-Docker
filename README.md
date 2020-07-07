@@ -29,6 +29,7 @@ Aligning with principles of [12factor apps](http://12factor.net/config), one of 
 | Component | Environment Variable  | Defaults                       | Description
 |:----------|:----------------------|:-------------------------------|:-----------
 | backend   | ET_DATABASE_LOCATION  | easytravel-mongodb:27017       | The location of the database the easyTravel Business Backend shall connect to.
+| backend   | ET_ADMIN_DATABASE     | admin                          | 
 | frontend  | ET_BACKEND_URL        | http://easytravel-backend:8080 | The URL to easyTravel's Business Backend.
 | nginx     | ET_FRONTEND_LOCATION  | easytravel-frontend:8080       | The location of the Customer Frontend the easyTravel WWW server shall serve via port 80.
 | nginx     | ET_BACKEND_LOCATION   | easytravel-backend:8080        | The location of the Business Backend the easyTravel WWW server shall serve via port 8080.

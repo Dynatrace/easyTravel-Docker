@@ -13,6 +13,8 @@ This project builds and deploys the [Dynatrace easyTravel](https://community.dyn
 | frontend  | The easyTravel Customer Frontend (Java).
 | nginx     | A reverse-proxy for the easyTravel Customer Frontend (NGINX).
 | loadgen   | A synthetic UEM load generator (Java).
+| angularfrontend  | The easyTravel Customer Frontend (Angular).
+| headleassloadgen | Headless Angular load generator (Java).
 
 ## Run easyTravel in Docker
 
@@ -41,6 +43,9 @@ Aligning with principles of [12factor apps](http://12factor.net/config), one of 
 | loadgen   | ET_PROBLEMS_DELAY     | 0                              | A delay in seconds. When used with Dynatrace, it is suggested to use a value of 7500 (slightly more than 2 hours) so that Dynatrace can learn from an error-free behavior first.
 | loadgen<br/>backend<br/>frontend | ET_APM_SERVER_DEFAULT | APM | The type of used server. Can be "APM" for Dynatrace and "Classic" for AppMon
 | loadgen   | ET_VISIT_NUMBER       | 5                              | The number of visits generated per minute
+| angularfrontend | ET_BACKEND_URL  | http://easytravel-backend:8080 | The URL to easyTravel's Business Backend
+| headlessloadgen | ET_ANGULAR_FRONTEND_URL | http://easytravel-www:9079 | The URL to easyTravel's Angular Frontend
+| headlessloadgen | ET_APM_SERVER_DEFAULT | APM | The type of used server. Can be "APM" for Dynatrace and "Classic" for AppMon
 
 ## Enable easyTravel Problem Patterns
 

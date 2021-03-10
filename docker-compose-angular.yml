@@ -52,7 +52,7 @@ www:
   container_name: www
   image: "dynatrace/easytravel-nginx"
   ports:
-  - 8080:80
+  - 80:80
   - 9079:9079
   links:
   - frontend

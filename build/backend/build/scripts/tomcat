@@ -1,8 +1,0 @@
-/opt/tomcat/logs/*.log /opt/tomcat/logs/*.txt {
-        copytruncate
-        rotate 5
-        size 100k
-        missingok
-        nodateext
-}
-

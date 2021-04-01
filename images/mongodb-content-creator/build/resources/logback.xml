@@ -1,0 +1,23 @@
+<configuration>
+
+  	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+  		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+	      	<layout class="com.dynatrace.easytravel.logging.DefaultFormatter" />
+	    </encoder>
+  	</appender>
+  
+	<!-- Possible logging levels:
+  		- TRACE
+  		- DEBUG
+  		- INFO
+  		- WARN
+  		- ERROR
+  		- ALL
+  		- OFF 		 	
+	-->
+	
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+  	</root>	
+	
+</configuration>

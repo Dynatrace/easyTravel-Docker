@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: pluginservice-rc
+spec:
+  replicas: 1
+  selector:
+    app: pluginservice
+  template: 
+    metadata:
+      labels:
+        app: pluginservice
+        tier: pluginservice
+    spec:
+      containers:
+      - name: pluginservice
+        image: dynatrace/easytravel-pluginservice
+        ports:
+        - containerPort: 7654

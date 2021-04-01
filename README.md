@@ -2,7 +2,7 @@
 
 ![easyTravel Logo](https://github.com/dynatrace-innovationlab/easyTravel-Builder/blob/images/easyTravel-logo.png)
 
-This project builds and deploys the [Dynatrace easyTravel](https://confluence.dynatrace.com/community/display/DL/Demo+Applications+-+easyTravel) demo application in [Docker](https://www.docker.com/). All components are readily available on the [Docker Hub](https://hub.docker.com/u/dynatrace/).
+This project builds and deploys the [Dynatrace easyTravel](https://community.dynatrace.com/community/display/DL/Demo+Applications+-+easyTravel) demo application in [Docker](https://www.docker.com/). All components are readily available on the [Docker Hub](https://hub.docker.com/u/dynatrace/).
 
 ## Application Components
 
@@ -13,8 +13,10 @@ This project builds and deploys the [Dynatrace easyTravel](https://confluence.dy
 | frontend  | The easyTravel Customer Frontend (Java).
 | nginx     | A reverse-proxy for the easyTravel Customer Frontend (NGINX).
 | loadgen   | A synthetic UEM load generator (Java).
-| angularfrontend  | The easyTravel Customer Frontend (Angular).
-| headleassloadgen | Headless Angular load generator (Java).
+| angularfrontend  | The easyTravel Customer Frontend (Java,Angular).
+| headleassloadgen | Headless load generator for Angular frontend using headless Chrome (Java).
+| pluginservice | Optional component that keeps state of plugins. Used in case of multiple backend components (Java).
+| mongodb-content-creator | Allows to create easyTravel database content in empty MongoDB database.
 
 ## Run easyTravel in Docker
 
@@ -73,9 +75,56 @@ Please refer to the [Dynatrace-Docker](https://github.com/dynatrace/Dynatrace-Do
 docker-compose -f docker-compose-withDtAppMon.yml up
 ```
 
+## How to build easyTravel Docker images ?
+
+Use `build.sh` if you want to build easyTravel Docker images yourself.
+
+## How to build easyTravel deployment artefacts ?
+
+### Option A: 'build-et.sh'
+
+The `build-et.sh` script builds easyTravel deployment artefacts into a directory `deploy` inside your current working directory, by default. You can override the default behavior by providing the following *environment variables* to the script:
+
+| Environment Variable  | Defaults                    | Description
+|:----------------------|:----------------------------|:-----------
+| ET_SRC_URL            | http://dexya6d9gs5s.cloudfront.net/latest/dynatrace-easytravel-src.zip | A URL to an easyTravel source distribution .zip file.
+| ET_DEPLOY_HOME        | ./deploy                    | A directory to contain the easyTravel deployment artefacts.
+| ET_BB_DEPLOY_HOME     | ./backend                   | A directory under `${ET_DEPLOY_HOME}` to contain the easyTravel Business Backend deployment artefact (will be located in `${ET_DEPLOY_HOME}/${ET_BB_DEPLOY_HOME}`).
+| ET_CF_DEPLOY_HOME     | ./frontend                  | A directory under `${ET_DEPLOY_HOME}` to contain the easyTravel Customer Frontend deployment artefact (will be located in `${ET_DEPLOY_HOME}/${ET_CF_DEPLOY_HOME}`).
+| ET_ACF_DEPLOY_HOME    | ./angularfrontend           | A directory under `${ET_DEPLOY_HOME}` to contain the easyTravel Customer Frontend (Angular) deployment artefact (will be located in `${ET_DEPLOY_HOME}/${ET_ACF_DEPLOY_HOME}`).
+| ET_LG_DEPLOY_HOME     | ./loadgen                   | A directory under `${ET_DEPLOY_HOME}` to contain the easyTravel UEM load generator deployment artefact (will be located in `${ET_DEPLOY_HOME}/${ET_LG_DEPLOY_HOME}`).
+| ET_HLG_DEPLOY_HOME    | ./headlessloadgen           | A directory under `${ET_DEPLOY_HOME}` to contain the easyTravel headless Angular load generator (Java) deployment artefact (will be located in `${ET_DEPLOY_HOME}/${ET_HLG_DEPLOY_HOME}`).
+| ET_MG_DEPLOY_HOME     | ./mongodb                   | A directory under `${ET_DEPLOY_HOME}` to contain the easyTravel pre-populated travel database (will be located in `${ET_DEPLOY_HOME}/${ET_MG_DEPLOY_HOME}`).
+| ET_MGC_DEPLOY_HOME    | ./mongodb-content-creator   | A directory under `${ET_DEPLOY_HOME}` to contain the easyTravel MongoDB Content Creator deployment artefact (will be located in `${ET_DEPLOY_HOME}/${ET_MGC_DEPLOY_HOME}`).
+| ET_PS_DEPLOY_HOME     | ./pluginservice             | A directory under `${ET_DEPLOY_HOME}` to contain the easyTravel Plugin Service deployment artefact (will be located in `${ET_DEPLOY_HOME}/${ET_PS_DEPLOY_HOME}`).
+
+#### Example: create deployment artefacts in `./deploy`:
+
+```
+./build-et.sh
+```
+
+#### Example: create deployment artefacts in `./deploy` and no sub-folders:
+
+```
+export ET_BB_DEPLOY_HOME=. \
+export ET_CF_DEPLOY_HOME=. \
+export ET_ACF_DEPLOY_HOME=. \
+export ET_LG_DEPLOY_HOME=. \
+export ET_HLG_DEPLOY_HOME=. \
+export ET_MG_DEPLOY_HOME=. \
+export ET_MGC_DEPLOY_HOME=. \
+export ET_PS_DEPLOY_HOME=. \
+./build-et.sh
+```
+
+### Option B: 'build-in-docker.sh'
+
+Use `build-in-docker.sh` if you want to build easyTravel deployment artefacts in a build environment that runs in Docker, so you don't have to set up your own. Deployment artefacts can be found in a directory `deploy` inside your current working directory. You can override the default behavior by providing *environment variables* to the script (the same variables as in Option A).
+
 ## Problems? Questions? Suggestions?
 
-This offering is [Dynatrace Community Supported](https://confluence.dynatrace.com/community/display/DL/Support+Levels#SupportLevels-Communitysupported/NotSupportedbyDynatrace(providedbyacommunitymember)). Feel free to share any problems, questions and suggestions with your peers on the Dynatrace Community's [Application Monitoring & UEM Forum](https://answers.dynatrace.com/spaces/146/index.html).
+This offering is [Dynatrace Community Supported](https://community.dynatrace.com/community/display/DL/Support+Levels#SupportLevels-Communitysupported/NotSupportedbyDynatrace(providedbyacommunitymember)). Feel free to share any problems, questions and suggestions with your peers on the Dynatrace Community's [Application Monitoring & UEM Forum](https://answers.dynatrace.com/spaces/146/index.html).
 
 ## License
 

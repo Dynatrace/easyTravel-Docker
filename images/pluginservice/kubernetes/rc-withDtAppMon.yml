@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: pluginservice-rc
+spec:
+  replicas: 2
+  selector:
+    app: pluginservice
+  template: 
+    metadata:
+      labels:
+        app: pluginservice
+        tier: pluginservice
+    spec:
+      containers:
+      - name: pluginservice
+        image: dynatrace/easytravel-pluginservice
+        env:
+        - name: CATALINA_OPTS
+          value: "-agentpath:/srv/dynatrace/agent/lib64/libdtagent.so=name=pluginservice_easyTravelKube,collector=localhost:9998"
+        ports:
+        - containerPort: 7654
+        volumeMounts:
+        - name: dynatrace-volume
+          mountPath: /srv/dynatrace
+      - name: dtagent
+        image: dynatrace/agent
+        volumeMounts:
+        - name: dynatrace-volume
+          mountPath: /srv/dynatrace
+        lifecycle:
+          postStart:
+            exec:
+              command: ["cp", "-R", "/dynatrace", "/srv"]
+      - name: dtcollector
+        image: dynatrace/collector
+        env:
+        - name: DT_COLLECTOR_SERVER
+          value: "acmeco.dynatracesaas.com:6698"
+        ports:
+        - containerPort: 9998
+      volumes:
+      - name: dynatrace-volume
+        emptyDir: {}

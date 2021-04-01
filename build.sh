@@ -1,19 +1,18 @@
 #!/bin/bash
-export ET_SRC_URL="http://dexya6d9gs5s.cloudfront.net/latest/dynatrace-easytravel-src.zip"
 
-export ET_DEPLOY_HOME="./build"
+export ET_DEPLOY_HOME="images"
 export ET_CF_DEPLOY_HOME="frontend/build"
+export ET_ACF_DEPLOY_HOME="angularfrontend/build"
 export ET_BB_DEPLOY_HOME="backend/build"
 export ET_LG_DEPLOY_HOME="loadgen/build"
+export ET_HLG_DEPLOY_HOME="headlessloadgen/build"
+export ET_MG_DEPLOY_HOME="mongodb/build"
+export ET_MGC_DEPLOY_HOME="mongodb-content-creator/build"
+export ET_PS_DEPLOY_HOME="pluginservice/build"
 
-export DOCKER_CONTAINER_BUILD_SH_PREFIX="./app/easyTravel"
+./build-in-docker.sh
 
-./app/easyTravel/build-in-docker.sh
-
-mkdir -p ./build/mongodb/build && \
-cp ./app/easyTravel/deploy/data/easyTravel-mongodb-db.tar.gz ./build/mongodb/build
-
-for folder in `ls -d build/*/`; do
+for folder in `ls -d $ET_DEPLOY_HOME/*/`; do
   pushd ${folder}
   ./build.sh
   popd

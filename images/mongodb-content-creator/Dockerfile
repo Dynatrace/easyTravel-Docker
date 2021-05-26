@@ -16,6 +16,6 @@ RUN chmod a+x /usr/local/bin/wait-for-cmd.sh
 COPY build/scripts/run-process.sh /
 RUN chmod a+x /run-process.sh
 
-WORKDIR ${ET_HOME}/mongo-db_content-creator-latest
+WORKDIR ${ET_HOME}
 
 ENTRYPOINT /run-process.sh

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 export ET_DEPLOY_HOME="images"
 export ET_CF_DEPLOY_HOME="frontend/build"

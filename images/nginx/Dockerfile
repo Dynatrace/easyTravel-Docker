@@ -1,4 +1,4 @@
-FROM nginx:1.9.11
+FROM nginx:1.21.3
 
 LABEL maintainer="Rafal Psciuk <rafal.psciuk@dynatrace.com>, Tomasz Wieremjewicz <tomasz.wieremjewicz@dynatrace.com>"
 

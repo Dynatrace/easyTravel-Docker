@@ -21,5 +21,5 @@ docker run --rm \
   --env ET_MG_DEPLOY_HOME="${ET_MG_DEPLOY_HOME}" \
   --env ET_MGC_DEPLOY_HOME="${ET_MGC_DEPLOY_HOME}" \
   --env ET_PS_DEPLOY_HOME="${ET_PS_DEPLOY_HOME}" \
-  frekele/ant \
+  perrit/apache-ant \
   "${DOCKER_CONTAINER_WORKDIR}/${DOCKER_CONTAINER_BUILD_SH_PREFIX}/build-et.sh"

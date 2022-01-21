@@ -13,4 +13,4 @@ fi
 
 echo "Waiting for the easyTravel Customer Frontend on ${ET_ANGULAR_FRONTEND_URL}"
 wait-for-cmd.sh "nc -z `echo ${ET_ANGULAR_FRONTEND_URL} | sed 's/http:\/\///' | sed 's/:/ /'`" 360
-java ${JAVA_OPTS} -Dconfig.chromeDriverOpts=no-sandbox -Dconfig.maximumChromeDrivers=1 -Dconfig.maximumChromeDriversMobile=1 -jar uemload.jar --autorun true --const ${ET_VISIT_NUMBER} --server ${ET_ANGULAR_FRONTEND_URL} ${EXTRA_OPTS} --scenario "${SCENARIO}"
+java ${JAVA_OPTS} -Dconfig.chromeDriverOpts=no-sandbox,disable-dev-shm-usage -Dconfig.maximumChromeDrivers=1 -Dconfig.maximumChromeDriversMobile=1 -jar uemload.jar --autorun true --const ${ET_VISIT_NUMBER} --server ${ET_ANGULAR_FRONTEND_URL} ${EXTRA_OPTS} --scenario "${SCENARIO}"

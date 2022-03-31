@@ -14,5 +14,5 @@ if [ -n "${ET_BACKEND_URL}" ]; then
 fi
 
 echo "Waiting for the easyTravel Customer Frontend on ${ET_ANGULAR_FRONTEND_URL}"
-wait-for-cmd.sh "nc -z `echo ${ET_ANGULAR_FRONTEND_URL} | sed 's/http:\/\///' | sed 's/:/ /'`" 360
+wait-for-cmd.sh "nc -z `echo ${ET_ANGULAR_FRONTEND_URL} | sed 's/https\?:\/\///' | sed 's/:/ /'`" 360
 java ${JAVA_OPTS} -Dconfig.chromeDriverOpts=no-sandbox,disable-dev-shm-usage -Dconfig.maximumChromeDrivers=${MAX_CHROME_DRIVERS} -Dconfig.maximumChromeDriversMobile=${MAX_CHROME_DRIVERS} -jar uemload.jar --autorun true --const ${ET_VISIT_NUMBER} --server ${ET_ANGULAR_FRONTEND_URL} ${EXTRA_OPTS} --scenario "${SCENARIO}"

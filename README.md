@@ -87,7 +87,7 @@ The `build-et.sh` script builds easyTravel deployment artefacts into a directory
 
 | Environment Variable  | Defaults                    | Description
 |:----------------------|:----------------------------|:-----------
-| ET_SRC_URL            | http://dexya6d9gs5s.cloudfront.net/latest/dynatrace-easytravel-src.zip | A URL to an easyTravel source distribution .zip file.
+| ET_SRC_URL            | http://etinstallers.demoability.dynatracelabs.com/latest/dynatrace-easytravel-src.zip | A URL to an easyTravel source distribution .zip file.
 | ET_DEPLOY_HOME        | ./deploy                    | A directory to contain the easyTravel deployment artefacts.
 | ET_BB_DEPLOY_HOME     | ./backend                   | A directory under `${ET_DEPLOY_HOME}` to contain the easyTravel Business Backend deployment artefact (will be located in `${ET_DEPLOY_HOME}/${ET_BB_DEPLOY_HOME}`).
 | ET_CF_DEPLOY_HOME     | ./frontend                  | A directory under `${ET_DEPLOY_HOME}` to contain the easyTravel Customer Frontend deployment artefact (will be located in `${ET_DEPLOY_HOME}/${ET_CF_DEPLOY_HOME}`).

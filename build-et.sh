@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-ET_SRC_URL=${ET_SRC_URL:-"http://dexya6d9gs5s.cloudfront.net/latest/dynatrace-easytravel-src.zip"}
+ET_SRC_URL=${ET_SRC_URL:-"http://etinstallers.demoability.dynatracelabs.com/latest/dynatrace-easytravel-src.zip"}
 ET_SRC_HOME=/tmp
 ET_SRC_CF_HOME="${ET_SRC_HOME}/CustomerFrontend"
 ET_SRC_BB_HOME="${ET_SRC_HOME}/BusinessBackend"

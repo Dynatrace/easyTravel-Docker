@@ -134,7 +134,7 @@ tar -cvzf "${ET_HLG_DEPLOY_HOME}/headlessloadgen.tar.gz" \
           ./lib/xml-apis-*.jar \
           ./lib/logback-*.jar \
           ./lib/slf4j-api-1.7.25.jar \
-          ./lib/openkit-2.1.1-SNAPSHOT.jar \
+          ./lib/openkit-2.3.0-SNAPSHOT.jar \
           ./resources/easyTravel.properties \
           ./resources/easyTravelConfig.properties \
           ./resources/easyTravelThirdPartyResourcesizes.properties \

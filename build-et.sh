@@ -86,7 +86,7 @@ tar -cvzf "${ET_LG_DEPLOY_HOME}/loadgen.tar.gz" \
           ./lib/xml-apis-*.jar \
           ./lib/logback-*.jar \
           ./lib/slf4j-api-1.7.25.jar \
-          ./lib/openkit-2.*.jar \
+          ./lib/openkit-3.*.jar \
           ./resources/easyTravel.properties \
           ./resources/easyTravelConfig.properties \
           ./resources/easyTravelThirdPartyResourcesizes.properties \
@@ -134,7 +134,7 @@ tar -cvzf "${ET_HLG_DEPLOY_HOME}/headlessloadgen.tar.gz" \
           ./lib/xml-apis-*.jar \
           ./lib/logback-*.jar \
           ./lib/slf4j-api-1.7.25.jar \
-          ./lib/openkit-2.3.0-SNAPSHOT.jar \
+          ./lib/openkit-3.*.jar \
           ./lib/jackson-core-2.9.9.jar \
           ./lib/jackson-annotations-2.9.0.jar \
           ./lib/jackson-databind-2.9.9.3.jar \

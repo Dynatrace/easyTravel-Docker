@@ -19,16 +19,13 @@ ET_PS_DEPLOY_HOME="${ET_DEPLOY_HOME}/${ET_PS_DEPLOY_HOME:-pluginservice}"
 ET_CF_DEPLOY_LIB_HOME="${ET_CF_DEPLOY_HOME}/lib"
 
 cd "${ET_SRC_HOME}"
+
+# Download easyTravel sources
 echo "EasyTravel source: ${ET_SRC_URL}"
+curl -L -o easyTravel-src.zip "${ET_SRC_URL}"
 
 # Unarchive and build easyTravel sources while setting up some env vars
-if [ $ET_SRC_URL == "local" ]; then
-    unzip ../workspace/easyTravel-src.zip -d ./
-else
-    # Download easyTravel sources
-    curl -L -o easyTravel-src.zip "${ET_SRC_URL}"
-    unzip ./easyTravel-src.zip
-fi
+unzip ./easyTravel-src.zip
 export ANT_OPTS="-Dfile.encoding=UTF8"
 export JAVA_TOOL_OPTIONS=-Dfile.encoding=UTF8
 ant -f ./Distribution war

@@ -1,4 +1,4 @@
-FROM tomcat:8.5-jdk11-openjdk
+FROM tomcat:9.0.78-jdk11-temurin-focal
 
 LABEL maintainer="Rafal Psciuk <rafal.psciuk@dynatrace.com>, Tomasz Wieremjewicz <tomasz.wieremjewicz@dynatrace.com>"
 

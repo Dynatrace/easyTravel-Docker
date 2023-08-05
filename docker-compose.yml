@@ -1,104 +1,105 @@
-mongodb:
-  hostname: easytravel-mongodb
-  container_name: mongodb
-  image: "dynatrace/easytravel-mongodb"
-  ports:
-  - 27017
-  - 28017
+services:
+  mongodb:
+    hostname: easytravel-mongodb
+    container_name: mongodb
+    image: "dynatrace/easytravel-mongodb"
+    ports:
+    - 27017
+    - 28017
 
-backend:
-  hostname: easytravel-backend
-  container_name: backend
-  image: "dynatrace/easytravel-backend"
-  ports:
-  - 8091:8080
-  links:
-  - mongodb
-  environment:
-    CATALINA_OPTS: "-Dconfig.apmServerDefault=${ET_APM_SERVER_DEFAULT} -Xmx300m"
-    ET_DATABASE_LOCATION: "easytravel-mongodb:27017"
-    ET_MONGO_AUTH_DB: "admin"
-    ET_DATABASE_USER: "etAdmin"
-    ET_DATABASE_PASSWORD: "adminadmin"
+  backend:
+    hostname: easytravel-backend
+    container_name: backend
+    image: "dynatrace/easytravel-backend"
+    ports:
+    - 8091:8080
+    links:
+    - mongodb
+    environment:
+      CATALINA_OPTS: "-Dconfig.apmServerDefault=${ET_APM_SERVER_DEFAULT} -Xmx300m"
+      ET_DATABASE_LOCATION: "easytravel-mongodb:27017"
+      ET_MONGO_AUTH_DB: "admin"
+      ET_DATABASE_USER: "etAdmin"
+      ET_DATABASE_PASSWORD: "adminadmin"
 
-frontend:
-  hostname: easytravel-frontend
-  container_name: frontend
-  image: "dynatrace/easytravel-frontend"
-  ports:
-  - 8080
-  links:
-  - backend
-  - mongodb
-  environment:
-    CATALINA_OPTS: "-Dconfig.apmServerDefault=${ET_APM_SERVER_DEFAULT} -Xmx525m"
-    ET_BACKEND_URL: "http://easytravel-backend:8080"
+  frontend:
+    hostname: easytravel-frontend
+    container_name: frontend
+    image: "dynatrace/easytravel-frontend"
+    ports:
+    - 8080
+    links:
+    - backend
+    - mongodb
+    environment:
+      CATALINA_OPTS: "-Dconfig.apmServerDefault=${ET_APM_SERVER_DEFAULT} -Xmx525m"
+      ET_BACKEND_URL: "http://easytravel-backend:8080"
 
-angular-frontend:
-  hostname: easytravel-angular-frontend
-  container_name: angular-frontend
-  image: "dynatrace/easytravel-angular-frontend"
-  ports:
-  - 8080
-  links:
-  - backend
-  - mongodb
-  environment:
-    CATALINA_OPTS: "-Dconfig.apmServerDefault=${ET_APM_SERVER_DEFAULT} -Xmx525m"
-    ET_BACKEND_URL: "http://easytravel-backend:8080"
+  angular-frontend:
+    hostname: easytravel-angular-frontend
+    container_name: angular-frontend
+    image: "dynatrace/easytravel-angular-frontend"
+    ports:
+    - 8080
+    links:
+    - backend
+    - mongodb
+    environment:
+      CATALINA_OPTS: "-Dconfig.apmServerDefault=${ET_APM_SERVER_DEFAULT} -Xmx525m"
+      ET_BACKEND_URL: "http://easytravel-backend:8080"
 
-www:
-  hostname: easytravel-www
-  container_name: www
-  image: "dynatrace/easytravel-nginx"
-  ports:
-  - 80:80
-  - 9079:9079
-  - 8080:8080
-  links:
-  - frontend
-  - angular-frontend
-  - backend
-  environment:
-    ET_FRONTEND_LOCATION: "easytravel-frontend:8080"
-    ET_ANGULAR_FRONTEND_LOCATION: "easytravel-angular-frontend:8080"
-    ET_BACKEND_LOCATION: "easytravel-backend:8080"
+  www:
+    hostname: easytravel-www
+    container_name: www
+    image: "dynatrace/easytravel-nginx"
+    ports:
+    - 80:80
+    - 9079:9079
+    - 8080:8080
+    links:
+    - frontend
+    - angular-frontend
+    - backend
+    environment:
+      ET_FRONTEND_LOCATION: "easytravel-frontend:8080"
+      ET_ANGULAR_FRONTEND_LOCATION: "easytravel-angular-frontend:8080"
+      ET_BACKEND_LOCATION: "easytravel-backend:8080"
 
-headless-customer-loadgen:
-  container_name: headless-customer-loadgen
-  image: "dynatrace/easytravel-headless-loadgen"
-  links:
-  - backend
-  - frontend
-  - www
-  environment:
-    ET_FRONTEND_URL: "http://easytravel-www:80"
-    ET_VISIT_NUMBER: 2
-    MAX_CHROME_DRIVERS: 4
-    SCENARIO_NAME: "Headless Customer Scenario"
+  headless-customer-loadgen:
+    container_name: headless-customer-loadgen
+    image: "dynatrace/easytravel-headless-loadgen"
+    links:
+    - backend
+    - frontend
+    - www
+    environment:
+      ET_FRONTEND_URL: "http://easytravel-www:80"
+      ET_VISIT_NUMBER: 2
+      MAX_CHROME_DRIVERS: 4
+      SCENARIO_NAME: "Headless Customer Scenario"
 
-headless-angular-loadgen:
-  container_name: headless-angular-loadgen
-  image: "dynatrace/easytravel-headless-loadgen"
-  links:
-  - backend
-  - angular-frontend
-  - www
-  environment:
-    ET_FRONTEND_URL: "http://easytravel-www:9079"
-    ET_VISIT_NUMBER: 2
-    MAX_CHROME_DRIVERS: 4
-    SCENARIO_NAME: "Headless Angular Scenario"
+  headless-angular-loadgen:
+    container_name: headless-angular-loadgen
+    image: "dynatrace/easytravel-headless-loadgen"
+    links:
+    - backend
+    - angular-frontend
+    - www
+    environment:
+      ET_FRONTEND_URL: "http://easytravel-www:9079"
+      ET_VISIT_NUMBER: 2
+      MAX_CHROME_DRIVERS: 4
+      SCENARIO_NAME: "Headless Angular Scenario"
 
-loadgen:
-  container_name: loadgen
-  image: "dynatrace/easytravel-loadgen"
-  links:
-  - backend
-  - frontend
-  - www
-  environment:
-    ET_FRONTEND_URL: "http://easytravel-www:80"
-    ET_BACKEND_URL: "http://easytravel-www:8080"
-    ET_PROBLEMS: "BadCacheSynchronization,CPULoad,DatabaseCleanup,DatabaseSlowdown,FetchSizeTooSmall,JourneySearchError404,JourneySearchError500,LoginProblems,MobileErrors,TravellersOptionBox"    
-    ET_VISIT_NUMBER: 2
+  loadgen:
+    container_name: loadgen
+    image: "dynatrace/easytravel-loadgen"
+    links:
+    - backend
+    - frontend
+    - www
+    environment:
+      ET_FRONTEND_URL: "http://easytravel-www:80"
+      ET_BACKEND_URL: "http://easytravel-www:8080"
+      ET_PROBLEMS: "BadCacheSynchronization,CPULoad,DatabaseCleanup,DatabaseSlowdown,FetchSizeTooSmall,JourneySearchError404,JourneySearchError500,LoginProblems,MobileErrors,TravellersOptionBox"    
+      ET_VISIT_NUMBER: 2

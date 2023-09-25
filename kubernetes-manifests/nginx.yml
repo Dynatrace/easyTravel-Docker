@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+        app.kubernetes.io/name: nginx
+        app.kubernetes.io/part-of: easytravel
+    spec:
+      containers:
+        - env:
+            - name: ET_ANGULAR_FRONTEND_LOCATION
+              value: angular-frontend-service:8080
+            - name: ET_BACKEND_LOCATION
+              value: backend-service:8080
+          image: dynatrace/easytravel-nginx
+          imagePullPolicy: Always
+          name: nginx
+          ports:
+            - containerPort: 80
+              protocol: TCP
+            - containerPort: 9079
+              protocol: TCP
+          resources:
+            requests:
+              memory: "150Mi"
+            limits:
+              memory: "150Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular-nginx-service
+spec:
+  ports:
+    - protocol: TCP
+      targetPort: 9079
+      port: 80
+  selector:
+    app: nginx
+  type: LoadBalancer

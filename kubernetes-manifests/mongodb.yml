@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+spec:
+  selector:
+    matchLabels:
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+        app.kubernetes.io/name: mongodb
+        app.kubernetes.io/part-of: easytravel
+    spec:
+      containers:
+        - image: dynatrace/easytravel-mongodb
+          name: mongodb
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 27017
+              protocol: TCP
+            - containerPort: 28017
+              protocol: TCP
+          resources:
+            requests:
+              memory: "100Mi"
+            limits:
+              memory: "100Mi"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-service
+spec:
+  ports:
+    - name: "27017"
+      port: 27017
+      protocol: TCP
+      targetPort: 27017
+    - name: "28017"
+      port: 28017
+      protocol: TCP
+      targetPort: 28017
+  selector:
+    app: mongodb
+  type: ClusterIP

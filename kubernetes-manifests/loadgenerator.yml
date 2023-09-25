@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-loadgenerator
+spec:
+  selector:
+    matchLabels:
+      app: angular-loadgenerator
+  template:
+    metadata:
+      labels:
+        app: angular-loadgenerator
+        app.kubernetes.io/name: angular-loadgenerator
+        app.kubernetes.io/part-of: easytravel
+    spec:
+      containers:
+        - env:
+            - name: ET_ANGULAR_FRONTEND_URL
+              value: http://angular-nginx-service:80
+            - name: ET_APM_SERVER_DEFAULT
+              value: APM
+            - name: ET_VISIT_NUMBER
+              value: "2"
+            - name: MAX_CHROME_DRIVERS
+              value: "4"
+            - name: ET_PROBLEMS
+              value: BadCacheSynchronization,CPULoad,DatabaseCleanup,DatabaseSlowdown,FetchSizeTooSmall,JourneySearchError404,JourneySearchError500,LoginProblems,MobileErrors,TravellersOptionBox
+          image: dynatrace/easytravel-headless-loadgen
+          name: angular-loadgen
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "800Mi"
+            limits:
+              memory: "800Mi"

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angular-frontend
+spec:
+  selector:
+    matchLabels:
+      app: angular-frontend
+  template:
+    metadata:
+      labels:
+        app: angular-frontend
+        app.kubernetes.io/name: angular-frontend
+        app.kubernetes.io/part-of: easytravel
+    spec:
+      containers:
+        - env:
+            - name: ET_BACKEND_URL
+              value: http://backend-service:8080
+          image: dynatrace/easytravel-angular-frontend
+          imagePullPolicy: Always
+          name: angular-frontend
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            requests:
+              memory: "500Mi"
+            limits:
+              memory: "500Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: angular-frontend-service
+spec:
+  ports:
+    - name: web
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: angular-frontend
+  type: ClusterIP

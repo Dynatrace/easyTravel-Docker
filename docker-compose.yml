@@ -1,6 +1,17 @@
 version: '3'
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-file: "5"
+    max-size: "10m"
+
+x-service: &default-service
+  restart: always
+  logging: *default-logging
+
 services:
   mongodb:
+    <<: *default-service
     hostname: easytravel-mongodb
     container_name: mongodb
     image: "dynatrace/easytravel-mongodb"
@@ -9,6 +20,7 @@ services:
       - 28017
 
   backend:
+    <<: *default-service      
     hostname: easytravel-backend
     container_name: backend
     image: "dynatrace/easytravel-backend"
@@ -24,6 +36,7 @@ services:
       ET_DATABASE_PASSWORD: "adminadmin"
 
   frontend:
+    <<: *default-service      
     hostname: easytravel-frontend
     container_name: frontend
     image: "dynatrace/easytravel-frontend"
@@ -37,6 +50,7 @@ services:
       ET_BACKEND_URL: "http://easytravel-backend:8080"
 
   angular-frontend:
+    <<: *default-service      
     hostname: easytravel-angular-frontend
     container_name: angular-frontend
     image: "dynatrace/easytravel-angular-frontend"
@@ -50,6 +64,7 @@ services:
       ET_BACKEND_URL: "http://easytravel-backend:8080"
 
   www:
+    <<: *default-service       
     hostname: easytravel-www
     container_name: www
     image: "dynatrace/easytravel-nginx"
@@ -67,6 +82,7 @@ services:
       ET_BACKEND_LOCATION: "easytravel-backend:8080"
 
   headless-customer-loadgen:
+    <<: *default-service      
     container_name: headless-customer-loadgen
     image: "dynatrace/easytravel-headless-loadgen"
     links:
@@ -80,6 +96,7 @@ services:
       SCENARIO_NAME: "Headless Customer Scenario"
 
   headless-angular-loadgen:
+    <<: *default-service      
     container_name: headless-angular-loadgen
     image: "dynatrace/easytravel-headless-loadgen"
     links:
@@ -93,6 +110,7 @@ services:
       SCENARIO_NAME: "Headless Angular Scenario"
 
   loadgen:
+    <<: *default-service      
     container_name: loadgen
     image: "dynatrace/easytravel-loadgen"
     links:

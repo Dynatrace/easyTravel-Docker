@@ -1,8 +1,8 @@
-FROM debian:buster
+FROM debian:bookworm
 
 LABEL maintainer="Rafal Psciuk <rafal.psciuk@dynatrace.com>, Tomasz Wieremjewicz <tomasz.wieremjewicz@dynatrace.com>"
 
-ENV ET_RUNTIME_DEPS "default-jre netcat wget"
+ENV ET_RUNTIME_DEPS "default-jre netcat-traditional wget"
 RUN  apt-get update && \
      apt-get install -y --no-install-recommends ${ET_RUNTIME_DEPS} && \
      rm -rf /var/lib/apt/lists/* /tmp/*

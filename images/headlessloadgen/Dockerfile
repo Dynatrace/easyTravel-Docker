@@ -1,8 +1,8 @@
-FROM debian:buster
+FROM debian:bookworm
 
 LABEL maintainer="Rafal Psciuk <rafal.psciuk@dynatrace.com>, Tomasz Wieremjewicz <tomasz.wieremjewicz@dynatrace.com>"
 
-ENV ET_RUNTIME_DEPS "default-jre netcat wget procps libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6:amd64 libcairo2 libcups2 libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4 libnss3 libxss1 libxslt1.1 xdg-utils libminizip-dev libgbm-dev libflac8"
+ENV ET_RUNTIME_DEPS "default-jre netcat-traditional wget procps libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6:amd64 libcairo2 libcups2 libgdk-pixbuf2.0-0 libgtk-3-0 libnspr4 libnss3 libxss1 libxslt1.1 xdg-utils libminizip-dev libgbm-dev libflac12"
 RUN  apt-get update && \
      apt-get install -y --no-install-recommends ${ET_RUNTIME_DEPS} && \
      rm -rf /var/lib/apt/lists/* /tmp/*

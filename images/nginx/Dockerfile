@@ -5,7 +5,7 @@ LABEL maintainer="Rafal Psciuk <rafal.psciuk@dynatrace.com>, Tomasz Wieremjewicz
 # Deploy 'nginx.conf' file
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
-ENV  ET_RUNTIME_DEPS "curl netcat openssl"
+ENV  ET_RUNTIME_DEPS "curl netcat-openbsd openssl"
 RUN  apt-get update && \
      apt-get install -y ${ET_RUNTIME_DEPS} && \
      rm -rf /var/lib/apt/lists/* /tmp/*

@@ -1,7 +1,5 @@
 FROM tomcat:9.0.78-jdk11-temurin-focal
 
-LABEL maintainer="Rafal Psciuk <rafal.psciuk@dynatrace.com>, Tomasz Wieremjewicz <tomasz.wieremjewicz@dynatrace.com>"
-
 # Deploy easyTravel Business Backend Application
 COPY build/PluginService.war ${CATALINA_HOME}/webapps/
 

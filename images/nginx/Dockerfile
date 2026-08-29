@@ -1,7 +1,5 @@
 FROM nginx:1.27
 
-LABEL maintainer="Rafal Psciuk <rafal.psciuk@dynatrace.com>, Tomasz Wieremjewicz <tomasz.wieremjewicz@dynatrace.com>"
-
 # Deploy 'nginx.conf' file
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 
